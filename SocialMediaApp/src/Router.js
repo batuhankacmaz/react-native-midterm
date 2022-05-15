@@ -5,16 +5,38 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Posts from './screens/posts';
 import Users from './screens/users';
+import UserDetail from './screens/userDetail';
+
+const Stack = createStackNavigator();
+const materialTab = createMaterialBottomTabNavigator();
+
+const UsersStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Users"
+      screenOptions={{
+        // headerStyle: { backgroundColor: '#009387' },
+        // headerTintColor: '#fff',
+        // headerTitleStyle: { fontWeight: 'bold' },
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Users" component={Users} options={{title: 'Users'}} />
+      <Stack.Screen
+        name="UserDetail"
+        component={UserDetail}
+        options={{title: 'UserDetail'}}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const App = () => {
-  //const Stack = createStackNavigator();
-  const materialTab = createMaterialBottomTabNavigator();
   return (
     <NavigationContainer>
-      <materialTab.Navigator barStyle={{backgroundColor: '#006400'}}>
+      <materialTab.Navigator barStyle={{backgroundColor: '#6a5acd'}}>
         <materialTab.Screen
           name="Users "
-          component={Users}
+          component={UsersStack}
           /*  options={{
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons name="map" color={'#fdfdfd'} size={20} />
@@ -36,27 +58,3 @@ const App = () => {
 };
 
 export default App;
-
-/* const CitiesStack = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName="Cities"
-      screenOptions={{
-        // headerStyle: { backgroundColor: '#009387' },
-        // headerTintColor: '#fff',
-        // headerTitleStyle: { fontWeight: 'bold' },
-        headerShown: false,
-      }}>
-      <Stack.Screen
-        name="CityStatistic"
-        component={CityStatistic}
-        options={{title: 'City Statistic'}}
-      />
-      <Stack.Screen
-        name="CityDetails"
-        component={CityStatisticDetails}
-        options={{title: 'City Details Page'}}
-      />
-    </Stack.Navigator>
-  );
-}; */
