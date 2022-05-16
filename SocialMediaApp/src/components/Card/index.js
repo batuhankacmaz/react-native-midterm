@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './Card.style';
 import {useFetchUser} from '../../hooks/fetchData';
 
-const NewsCard = ({cardData, navigation, navigatePage}) => {
+const Card = ({cardData, cardName, navigation, navigatePage}) => {
   console.log('items', cardData);
   const {userData, userError, userLoading} = useFetchUser(cardData.id);
   console.log('userData', userData);
@@ -20,4 +20,4 @@ const NewsCard = ({cardData, navigation, navigatePage}) => {
   );
 };
 
-export default NewsCard;
+export default Card;

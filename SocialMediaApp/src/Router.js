@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Posts from './screens/posts';
 import Users from './screens/users';
 import UserDetail from './screens/userDetail';
+import PostDetail from './screens/postDetail';
 
 const Stack = createStackNavigator();
 const materialTab = createMaterialBottomTabNavigator();
@@ -30,6 +31,30 @@ const UsersStack = () => {
   );
 };
 
+const PostsStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Postss"
+      screenOptions={{
+        // headerStyle: { backgroundColor: '#009387' },
+        // headerTintColor: '#fff',
+        // headerTitleStyle: { fontWeight: 'bold' },
+        headerShown: false,
+      }}>
+      <Stack.Screen
+        name="Postss"
+        component={Posts}
+        options={{title: 'Posts'}}
+      />
+      <Stack.Screen
+        name="PostDetail"
+        component={PostDetail}
+        options={{title: 'PostDetail'}}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const App = () => {
   return (
     <NavigationContainer>
@@ -45,7 +70,7 @@ const App = () => {
         />
         <materialTab.Screen
           name="Posts"
-          component={Posts}
+          component={PostsStack}
           /* options={{
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons name="city" color={'#fdfdfd'} size={20} />

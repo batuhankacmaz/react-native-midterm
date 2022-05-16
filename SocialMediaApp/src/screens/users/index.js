@@ -20,6 +20,7 @@ const Users = props => {
 
   const renderUsersCard = ({item}) => (
     <Card
+      cardName="Users"
       cardData={item}
       navigation={props.navigation}
       navigatePage="UserDetail"
