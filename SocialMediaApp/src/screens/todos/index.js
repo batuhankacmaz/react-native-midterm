@@ -9,29 +9,30 @@ import {
   FlatList,
   View,
 } from 'react-native';
-import {useFetchUsers, useFetchUser} from '../../hooks/fetchData';
+import {
+  useFetchUsers,
+  useFetchUser,
+  useFetchTodos,
+} from '../../hooks/fetchData';
 import Card from '../../components/Card';
 
 const Users = props => {
   const {usersData, usersError, usersLoading} = useFetchUsers();
+  const {todosData, todosError, todosLoading} = useFetchTodos();
 
   //const {userData, userError, userLoading} = useFetchUser(1);
   //console.log('userData', userData);
 
   const renderUsersCard = ({item}) => (
-    <Card
-      cardName="Users"
-      cardData={item}
-      navigation={props.navigation}
-      navigatePage="UserDetail"
-    />
+    <Card cardName="Users" cardData={item} isTodo />
   );
   const usersKeyExtractor = (item, index) => item.id.toString();
   return (
     <SafeAreaView>
+      <Text>Todos</Text>
       <FlatList
         keyExtractor={usersKeyExtractor}
-        data={usersData}
+        data={todosData}
         renderItem={renderUsersCard}
       />
     </SafeAreaView>

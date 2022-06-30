@@ -12,15 +12,13 @@ import {useFetchPosts, useFetchPost} from '../../hooks/fetchData';
 import PostInformatinCard from '../../components/PostInformationCard';
 
 const PostDetail = ({route, navigation}) => {
-  console.log('route', navigation);
   const data = route.params;
-  console.log('data', data);
+
   function backToFirst() {
     navigation.goBack();
-    console.log('clicked');
   }
   const {postsData, postsError, postsLoading} = useFetchPosts();
-  console.log('postsData', postsData);
+
   const {postData, postError, postLoading} = useFetchPost(1);
   console.log('postData', postData);
   return (

@@ -8,7 +8,9 @@ export const useFetchUsers = () => {
   const [usersError, setUsersError] = useState(null);
   async function fetchUsersData() {
     try {
-      const response = await axios.get(`${Config.API_URL}/users`);
+      const response = await axios.get(
+        `https://jsonplaceholder.typicode.com/users`,
+      );
       const data = response.data;
       setUsersData(data);
       setUsersLoading(false);
@@ -32,7 +34,9 @@ export const useFetchUser = id => {
   useEffect(() => {
     async function fetchUserData() {
       try {
-        const response = await axios.get(`${Config.API_URL}/users/${id}`);
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/users/${id}`,
+        );
         const data = response.data;
         setUserData(data);
         setUserLoading(false);
@@ -55,7 +59,9 @@ export const useFetchPosts = () => {
   useEffect(() => {
     async function fetchPostsData() {
       try {
-        const response = await axios.get(`${Config.API_URL}/posts`);
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/posts`,
+        );
         const data = response.data;
         setPostsData(data);
         setPostsLoading(false);
@@ -78,7 +84,9 @@ export const useFetchPost = id => {
   useEffect(() => {
     async function fetchPostData() {
       try {
-        const response = await axios.get(`${Config.API_URL}/posts/${id}`);
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/posts/${id}`,
+        );
         const data = response.data;
         setPostData(data);
         setPostLoading(false);
@@ -91,4 +99,107 @@ export const useFetchPost = id => {
   }, [id]);
 
   return {postData, postError, postLoading};
+};
+
+export const useFetchComments = id => {
+  const [commentsData, setCommentsData] = useState([]);
+  const [commentsLoading, setCommentsLoading] = useState(true);
+  const [commentsError, setCommentsError] = useState(null);
+
+  useEffect(() => {
+    async function fetchPostComments() {
+      try {
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/posts/${id}/comments`,
+        );
+        const data = response.data;
+        setCommentsData(data);
+        setCommentsLoading(false);
+      } catch (e) {
+        setCommentsError(e.message);
+        setCommentsLoading(false);
+      }
+    }
+    fetchPostComments();
+  }, [id]);
+
+  return {commentsData, commentsError, commentsLoading};
+};
+
+export const useFetchPhotos = id => {
+  console.log('geldikk');
+  const [photosData, setPhotosData] = useState([]);
+  const [photosLoading, setPhotosLoading] = useState(true);
+  const [photosError, setPhotosError] = useState(null);
+
+  useEffect(() => {
+    async function fetchPhotosData() {
+      try {
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/photos`,
+        );
+        const data = response.data;
+        const filterData = data.filter(item => item.albumId === id);
+        console.log('data', data);
+        setPhotosData(filterData);
+        setPhotosLoading(false);
+      } catch (e) {
+        setPhotosError(e.message);
+        setPhotosLoading(false);
+      }
+    }
+    fetchPhotosData();
+  }, [id]);
+
+  return {photosData, photosError, photosLoading};
+};
+
+export const useFetchAlbums = () => {
+  const [albumsData, setAlbumsData] = useState([]);
+  const [albumsLoading, setAlbumsLoading] = useState(true);
+  const [albumsError, setAlbumsError] = useState(null);
+
+  useEffect(() => {
+    async function fetchAlbumsData() {
+      try {
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/albums`,
+        );
+        const data = response.data;
+        setAlbumsData(data);
+        setAlbumsLoading(false);
+      } catch (e) {
+        setAlbumsError(e.message);
+        setAlbumsLoading(false);
+      }
+    }
+    fetchAlbumsData();
+  }, []);
+
+  return {albumsData, albumsError, albumsLoading};
+};
+
+export const useFetchTodos = () => {
+  const [todosData, setTodosData] = useState([]);
+  const [todosLoading, setTodosLoading] = useState(true);
+  const [todosError, setTodosError] = useState(null);
+
+  useEffect(() => {
+    async function fetchTodosData() {
+      try {
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/todos`,
+        );
+        const data = response.data;
+        setTodosData(data);
+        setTodosLoading(false);
+      } catch (e) {
+        setTodosError(e.message);
+        setTodosLoading(false);
+      }
+    }
+    fetchTodosData();
+  }, []);
+
+  return {todosData, todosError, todosLoading};
 };

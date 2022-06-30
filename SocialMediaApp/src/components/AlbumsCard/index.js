@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import styles from './PostCard.style';
-import {useFetchPost} from '../../hooks/fetchData';
+import styles from './AlbumsCard.style';
+import {useFetchAlbums} from '../../hooks/fetchData';
 
-const PostCard = ({cardData, cardName, navigation, navigatePage}) => {
-  const {postData, postError, postLoading} = useFetchPost(cardData.id);
+const Card = ({cardData, isTodo, cardName, navigation, navigatePage}) => {
+  const {albumsData, userError, userLoading} = useFetchAlbums();
 
   function navigateToPage() {
-    navigation.navigate(navigatePage, postData);
+    navigation.navigate(navigatePage, cardData.id);
   }
 
   return (
@@ -19,4 +19,4 @@ const PostCard = ({cardData, cardName, navigation, navigatePage}) => {
   );
 };
 
-export default PostCard;
+export default Card;

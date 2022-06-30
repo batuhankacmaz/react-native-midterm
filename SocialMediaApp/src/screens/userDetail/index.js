@@ -5,7 +5,7 @@ import InformationCard from '../../components/InformatinCard';
 function UserDetail({route, navigation}) {
   console.log('route', navigation);
   const data = route.params;
-  console.log('data', data);
+
   function backToFirst() {
     navigation.goBack();
     console.log('clicked');

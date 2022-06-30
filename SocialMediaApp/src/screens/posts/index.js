@@ -5,7 +5,7 @@ import PostCard from '../../components/PostCard';
 
 const Posts = props => {
   const {postsData, postsError, postsLoading} = useFetchPosts();
-  console.log('postsData', postsData);
+
   //const {postData, postError, postLoading} = useFetchPost(1);
   //console.log('postData', postData);
   const firstTwentyPost = postsData.filter(postData => {
@@ -18,12 +18,13 @@ const Posts = props => {
     <PostCard
       cardData={item}
       navigation={props.navigation}
-      navigatePage="PostDetail"
+      navigatePage="PostComments"
     />
   );
   const postsKeyExtractor = (item, index) => item.id.toString();
   return (
     <SafeAreaView>
+      <Text>Posts</Text>
       <FlatList
         cardName="PostDetail"
         keyExtractor={postsKeyExtractor}

@@ -9,12 +9,14 @@ import {
   FlatList,
   View,
 } from 'react-native';
-import {useFetchUsers, useFetchUser} from '../../hooks/fetchData';
+import {useFetchUsers, useFetchComments} from '../../hooks/fetchData';
 import Card from '../../components/Card';
 
 const Users = props => {
   const {usersData, usersError, usersLoading} = useFetchUsers();
-
+  const {commentsData} = useFetchComments(props.route.params.id);
+  const data = props.route.params.id;
+  console.log('comments', commentsData);
   //const {userData, userError, userLoading} = useFetchUser(1);
   //console.log('userData', userData);
 
@@ -29,9 +31,10 @@ const Users = props => {
   const usersKeyExtractor = (item, index) => item.id.toString();
   return (
     <SafeAreaView>
+      <Text>Comments</Text>
       <FlatList
         keyExtractor={usersKeyExtractor}
-        data={usersData}
+        data={commentsData}
         renderItem={renderUsersCard}
       />
     </SafeAreaView>
